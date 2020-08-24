@@ -10,7 +10,7 @@ class TutorialDataservice {
   }
 
   create(data) {
-    return ToastPlugin.post("/tutorials", data);
+    return http.post("/tutorials", data);
   }
 
   update(id, data) {
