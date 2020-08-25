@@ -45,7 +45,6 @@
       <ul class="list-group">
         <li
           class="list-group-item"
-          :class="{ active: index==currentIndex}"
           v-for="(tutorial, index) in tutorials"
           :key="index"
           v-on:click="setActiveTutorial(tutorial, index)">
@@ -66,7 +65,7 @@
         <div>
           <label><strong>Published:</strong></label>{{ currentTutorial.published? "Published": "Pending" }}
         </div>
-        <a class="badge badge-warining" v-bind:href="`/tutorials/`+currentTutorial.id">Edit</a>
+        <a class="badge badge-warning" v-bind:href="`/tutorials/`+currentTutorial.id">Edit</a>
       </div>
       <div v-else>
         <br/>
@@ -116,8 +115,8 @@ export default {
         })
 
     },
-    setActiveTutorial(index) {
-      this.currentIndex=this.tutorials[index];
+    setActiveTutorial(tutorial, index) {
+      this.currentTutorial=tutorial;
       this.currentIndex=index;
 
     },
