@@ -3,7 +3,11 @@
     <h1>Tutorial</h1>
     <form>
       <div class="form-group">
-        <label for="title">Title</label>  
+        <label for="id">Id:</label>  
+        <input type="text" class="from-control" id="id" v-model="currentTutorial.id"/>
+      </div>
+      <div class="form-group">
+        <label for="title">Title:</label>  
         <input type="text" class="from-control" id="title" v-model="currentTutorial.title"/>
       </div>
       <div class="form-group">
@@ -72,7 +76,7 @@
 
       },
       deleteTutorial() {
-        TutorialDataService.delete(this.tutorial.id)
+        TutorialDataService.delete(this.currentTutorial.id)
           .then(response => { this.$router.push({ name: "tutorials" }); console.log("deleteTutorial"); console.log(response.data); })
           .catch(err => { console.log("deleteTutorial"); console.log(err); })
 
