@@ -45,6 +45,7 @@
       <ul class="list-group">
         <li
           class="list-group-item"
+          :class="{ bground_selected: currentTutorial && currentIndex===index }"
           v-for="(tutorial, index) in tutorials"
           :key="index"
           v-on:click="setActiveTutorial(tutorial, index)">
@@ -150,5 +151,8 @@ export default {
   text-align: left;
   max-width: 750px;
   margin: auto;
+}
+.bground_selected {
+  background: lightcoral;
 }
 </style>
