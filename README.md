@@ -1,3 +1,8 @@
+### Thanks to:
+## Brandon Parise, https://developer.okta.com/blog/authors/brandon-parise/
+
+### Vue Client
+
 # nodejs-express-sequelize-postgresql-gui-vue
 
 ## Project setup
