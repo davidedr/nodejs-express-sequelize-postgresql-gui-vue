@@ -1,27 +1,28 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Hello from '@/components/Hello'
+import PostsManager from '@/components/PostsManager'
+// Here do NOT use double quotes " !!!
+import Auth from '@okta/okta-vue'
+
+Vue.use(Auth, {
+  issuer: "https://MYCOMPANY-dev-688627/oauth2/default",
+  client_id: "0oaucuay9wpfpK5Zt4x6",
+  redirect_uri: "http://localhost:8080/implicit/callback",
+  scope: "openid profile email"
+});
 
 Vue.use(Router);
 
-export default new Router({
+let router=new Router({
   mode: "history",
   routes: [
-    {
-      path: "/",
-      alias: "/tutorials",
-      name: "tutorials",
-      component: () => import("./components/TutorialsList")
-    },
-    {
-      path: "/tutorials/:id",
-      name: "tutorial-details",
-      component: () => import("./components/Tutorial")
-    },
-    {
-      path: "/add",
-      name: "add",
-      component: () => import("./components/AddTutorial")
-    },
-
+    { path: "/", name: "Hello", component: Hello},
+    { path: "/implicit/callback", component: Auth.handleCallback() },
+    { path: "/PostsManager", name: PostsManager, component: PostsManager, meta: { requiresAuth: true } }
   ]
 });
+
+router.beforeEach(Vue.prototype.$auth.authRedirectGuard());
+
+export default router;
