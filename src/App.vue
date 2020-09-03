@@ -40,6 +40,8 @@
 </template>
 
 <script>
+  import HelloWorld from '@/components/HelloWorld.vue'
+
   export default {
     name: 'app',
     data() {
@@ -56,7 +58,7 @@
     },
     methods: {
       login () {
-        this.$auth.loginRedirect()
+        this.$auth.loginRedirect('/')
       },
       async refreshActiveUser () {
         this.activeUser=await this.$auth.getUser()
@@ -66,23 +68,13 @@
         await this.refreshActiveUser()
         this.$router.push('/')
       }
+    },
+    components: {
+      HelloWorld
     }
   }
 </script>
 
-// Old script
-/* <script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
- */
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
